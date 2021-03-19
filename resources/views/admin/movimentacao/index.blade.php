@@ -12,6 +12,7 @@
             </select>
         </div>
         <input type="submit" value="Buscar" class="btn btn-primary mt-4">
+        <a href="{{ route('admin.movimentacao.export') }}" class="btn btn-danger mt-4">Gerar PDF</a>
     </form>
     @if (isset($lista))
     <table class="table table-condensed">

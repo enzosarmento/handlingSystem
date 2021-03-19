@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Movimentacao;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,5 +54,16 @@ class MovimentacaoController extends Controller
 
         $data['categorias'] = Categoria::all();
         return view('admin.movimentacao.novo', $data);
+    }
+
+    public function export()
+    {
+        $data = [];
+        $query = Movimentacao::where('status', 'ATV')->orderBy('data_movimentacao', 'desc');
+        $data['lista'] = $query->get();
+
+        $pdf = PDF::loadView('admin.movimentacao.index', $data);
+        return $pdf->download('movimentacao_contas.pdf');
+
     }
 }

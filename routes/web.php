@@ -18,4 +18,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function() {
     Route::match(['get', 'post'], '/movimentacao', [MovimentacaoController::class, 'index'])->name('movimentacao');
 
     Route::match(['get', 'post'], '/movimentacao/novo', [MovimentacaoController::class, 'novo'])->name('movimentacao.novo');
+
+    Route::match(['get', 'post'], '/movimentacao/export', [MovimentacaoController::class, 'export'])->name('movimentacao.export');
 });
